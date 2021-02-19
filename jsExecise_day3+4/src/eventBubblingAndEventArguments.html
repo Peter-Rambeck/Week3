@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Event Bubbling and event arguments</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        
+        <div id="id1"><h1>Unique id 1</h1></div>
+        
+        <div id="id2"><h1>Unique id 2</h1></div> 
+        
+        <div id="id3"><h1>Unique id 3</h1></div> 
+        
+        <div id ="outer">
+            
+        <div id="id1"><h1>Unique id 1 outer</h1></div>
+        
+        <div id="id2"><h1>Unique id 2 outer</h1></div> 
+        
+        <div id="id3"><h1>Unique id 3 outer</h1></div> 
+        
+        <div id="id4"><h1>Unique id 4 outer</h1></div> 
+        
+        <div id="id5"><h1>Unique id 5 outer</h1></div> 
+        
+        <div id="id6"><h1>Unique id 6 outer</h1></div> 
+        
+        <div id="id7"><h1>Unique id 7 outer</h1></div> 
+        
+        <div id="id8"><h1>Unique id 8 outer</h1></div> 
+        
+        <div id="id9"><h1>Unique id 9 outer</h1></div>
+        
+         <div id="id10"><h1>Unique id 10 outer</h1></div>
+        
+        </div>
+        
+        <div id="id11"><h1>Click me</h1></div>
+        
+        <ul id="id12"></ul>
+        
+            <form>
+              <label for="fname">First name:</label><br>
+              <input type="text" id="fname" name="fname"><br>
+            </form>      
+        <br>
+        <button id="btn1">Add you name to the list</button>
+       
+        <script>
+          
+            let hej = document.getElementsByTagName("div");
+            let x;
+            for ( x = 0; x < hej.length; x ++) { 
+                hej[x].setAttribute("style", "background-color:yellow; width:25px height:25px; margin:1px");
+            }
+            
+            // a) 
+            let click = document.getElementById("id1");
+            click.addEventListener("click", function() {
+               console.log("Hi from id1")
+            });
+            
+            // a) 
+            let click2 = document.getElementById("id2");
+            click2.addEventListener("click", function() {
+               console.log("Hi from id2");
+            });
+            
+              // a) 
+            let outer = document.getElementById("outer");
+            let noColor = outer.setAttribute("style", "background-color:none"); 
+            outer.addEventListener("click", function() {
+                let e = this;
+                let target =  e.target; 
+               console.log("Value of target e.id: " + e.id);
+            });
+            
+            let empty = document.getElementById("id11");
+             
+            // Empty xx 
+            empty.addEventListener("click", function() {
+                let e = this;
+                let target =  e.target; 
+                document.getElementById("id11").innerHTML = "This is an empty div with e.id: " + e.id;
+            });
+            
+         
+            // Using map to create list’s (ul’s, tables etc.)
+            // a
+            let arr = new Array("Lars", "Peter", "Jan", "Ian");
+            let arrMap = arr.map(function(x){
+                return "<li>" + x + "</li>"; 
+            });
+            let arrJoin = arrMap.join("");
+            document.getElementById("id12").innerHTML = arrJoin;
+            
+             // b
+             let addName = document.getElementById("btn1"); 
+             addName.addEventListener("click", function() {
+                let name = document.getElementById("fname").value;
+                let arrName = new Array(name, ... arr);
+               // document.getElementById("id12").innerHTML = name;
+                let arrNameMap = arrName.map(function(x){
+                return "<li>" + x + "</li>"; 
+                });
+                let arrNameMapJoin = arrNameMap.join("");
+                document.getElementById("id12").innerHTML = arrNameMapJoin;
+                console.log(arrName);               
+            });
+            
+           
+  
+                       
+        </script>
+    </body>
+</html>
