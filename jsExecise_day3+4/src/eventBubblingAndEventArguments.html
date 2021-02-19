@@ -9,16 +9,24 @@ and open the template in the editor.
         <title>Event Bubbling and event arguments</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        
     </head>
     
     <body>
         
-        <div id="id1"><h1>Unique id 1</h1></div>
+        <div class ="container"> 
+                    <div class ="row"> 
+            
         
-        <div id="id2"><h1>Unique id 2</h1></div> 
+            <div id="id1"><h1>Unique id 1</h1></div>
+            <div id="id2"><h1>Unique id 2</h1></div> 
+            <div id="id3"><h1>Unique id 3</h1></div> 
         
-        <div id="id3"><h1>Unique id 3</h1></div> 
+       
         
+        
+       
         <div id ="outer">
             
         <div id="id1"><h1>Unique id 1 outer</h1></div>
@@ -41,9 +49,12 @@ and open the template in the editor.
         
          <div id="id10"><h1>Unique id 10 outer</h1></div>
         
-        </div>
+       
+
         
+            
         <div id="id11"><h1>Click me</h1></div>
+        
         
         <ul id="id12"></ul>
         
@@ -52,14 +63,60 @@ and open the template in the editor.
               <input type="text" id="fname" name="fname"><br>
             </form>      
         <br>
+        
         <button id="btn1">Add you name to the list</button>
+        <br>
+        <button id="btn2">Remove first name of the list</button>
+        <br>
+        <button id="btn3">Remove first name of the list</button>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <div id="col">
+                    </div>
+                </tr>
+            </thead>
+            
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td id="td1"></td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+              
+              
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          
+        </table>
+        </div>
+        </div>
        
+     
+       
+        
         <script>
           
             let hej = document.getElementsByTagName("div");
             let x;
             for ( x = 0; x < hej.length; x ++) { 
-                hej[x].setAttribute("style", "background-color:yellow; width:25px height:25px; margin:1px");
+                hej[x].setAttribute("style", " width:25px height:25px; margin:1px");
+                // background-color:yellow;
             }
             
             // a) 
@@ -74,7 +131,7 @@ and open the template in the editor.
                console.log("Hi from id2");
             });
             
-              // a) 
+            // a) 
             let outer = document.getElementById("outer");
             let noColor = outer.setAttribute("style", "background-color:none"); 
             outer.addEventListener("click", function() {
@@ -113,8 +170,62 @@ and open the template in the editor.
                 });
                 let arrNameMapJoin = arrNameMap.join("");
                 document.getElementById("id12").innerHTML = arrNameMapJoin;
-                console.log(arrName);               
+                // console.log(arrName);               
             });
+            
+             // c
+             
+            let removeFirstName = document.getElementById("btn2"); 
+            removeFirstName.addEventListener("click", function() {
+                arr.splice(0,1);
+                console.log(arr);
+            });
+            
+            let removelastName = document.getElementById("btn3"); 
+            removelastName.addEventListener("click", function() {
+                let size = arr.length -1;
+                arr.splice(size,1);
+                console.log(arr);
+            });
+             
+            // Using map and filter to create dynamic table-rows
+            
+            var cars = [
+                { id: 1, year: 1997, make: 'Ford', model: 'E350', price: 3000 },
+                { id: 2, year: 1999, make: 'Chevy', model: 'Venture', price: 4900 },
+                { id: 3, year: 2000, make: 'Chevy', model: 'Venture', price: 5000 },
+                { id: 4, year: 1996, make: 'Jeep', model: 'Grand Cherokee', price: 4799 },
+                { id: 5, year: 2005, make: 'Volvo', model: 'V70', price: 44799 }
+            ];
+            
+            let carsId = cars.map(function(x){ 
+                return "<th scope=\"col\">" + x.id + "</th>"; 
+            });
+            let idMap = carsId.join("");
+            document.getElementById("col").innerHTML = idMap;
+            
+            /*
+             let carsYear = cars.map(function(x){ 
+                return "<th scope=\"col\">" + x.year + "</th>"; 
+            });
+            let yearMap = carsMap.join("");
+            document.getElementById("col").innerHTML = idMap;
+     * 
+             */
+            
+            
+            
+            
+            
+            
+            
+            
+
+
+
+             
+             
+            
             
            
   
