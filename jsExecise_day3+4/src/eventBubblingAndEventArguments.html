@@ -73,37 +73,23 @@ and open the template in the editor.
         <table class="table">
             <thead>
                 <tr>
-                    <div id="col">
-                    </div>
+                  <th scope="col">ID</th>
+                  <th scope="col">Year</th>
+                  <th scope="col">Make</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Price</th>
                 </tr>
-            </thead>
-            
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td id="td1"></td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              
-              
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+            </thead>            
+            <tbody id="col">
             </tbody>
-          
         </table>
+        
+         <form>
+              <label for="fname">Price:</label>
+              <input type="text" id="fname" name="fname">
+              <button id="btn4">Price less than</button>
+            </form>      
+        
         </div>
         </div>
        
@@ -174,7 +160,6 @@ and open the template in the editor.
             });
             
              // c
-             
             let removeFirstName = document.getElementById("btn2"); 
             removeFirstName.addEventListener("click", function() {
                 arr.splice(0,1);
@@ -198,31 +183,51 @@ and open the template in the editor.
                 { id: 5, year: 2005, make: 'Volvo', model: 'V70', price: 44799 }
             ];
             
-            let carsId = cars.map(function(x){ 
-                return "<th scope=\"col\">" + x.id + "</th>"; 
-            });
+//            let carsId = cars.map(function(x){ 
+//                return "<tr>" +
+//                       "<td>" + x.id + "</td>" + 
+//                       "<td>" + x.year + "</td>" + 
+//                       "<td>" + x.make + "</td>" + 
+//                       "<td>" + x.model + "</td>" + 
+//                       "<td>" + x.price + "</td>" + "</tr>"; 
+//            });
+//            let idMap = carsId.join("");
+//            document.getElementById("col").innerHTML = idMap;
+            
+            
+ 
+        let new2 = function table(n1){               
+            let carsId = n1.map(function(x){ 
+            return "<tr>" +
+                "<td>" + x.id + "</td>" + 
+                "<td>" + x.year + "</td>" + 
+                "<td>" + x.make + "</td>" + 
+                "<td>" + x.model + "</td>" + 
+                "<td>" + x.price + "</td>" + "</tr>"; 
+             });
             let idMap = carsId.join("");
-            document.getElementById("col").innerHTML = idMap;
+            // return idMap;
+            return document.getElementById("col").innerHTML = idMap;
+        };     
+        new2(cars);
+        //document.getElementById("col").innerHTML = new2(cars);
+        
+        let minprice= 4000;
+        let minpricefilter = function(x) { 
+        return x.price >= minprice;
+        };
+        cars = cars.filter(minpricefilter);
+        new2(cars);
+      
+   
+        // result = cars.filter(minpricefilter);
+           
+           
             
-            /*
-             let carsYear = cars.map(function(x){ 
-                return "<th scope=\"col\">" + x.year + "</th>"; 
-            });
-            let yearMap = carsMap.join("");
-            document.getElementById("col").innerHTML = idMap;
-     * 
-             */
             
             
             
-            
-            
-            
-            
-            
-
-
-
+        
              
              
             

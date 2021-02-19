@@ -83,6 +83,6 @@ let mul = function(n1, n2) {
       return "<li>" + x + "</li>"; 
   });
   let fun = funFun.join("");
-  // Output "<li>Lars</li><li>Peter</li><li>Jan</li><li>Ian</li>"
+  
   
   
