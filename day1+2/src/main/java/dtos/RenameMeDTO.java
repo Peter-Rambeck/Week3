@@ -29,9 +29,8 @@ public class RenameMeDTO {
         return rmdtos;
     }
 
-
     public RenameMeDTO(RenameMe rm) {
-        this.id = rm.getId();
+       // this.id = rm.getId();
         this.str1 = rm.getDummyStr1();
         this.str2 = rm.getDummyStr2();
     }

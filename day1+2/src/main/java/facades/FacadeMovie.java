@@ -68,7 +68,7 @@ public class FacadeMovie {
         }
         
     }
-    
+
     public List<MovieDTO> getAll(){
         EntityManager em = emf.createEntityManager();
         TypedQuery<Movie> query = em.createQuery("SELECT r FROM Movie r", Movie.class);
@@ -79,8 +79,8 @@ public class FacadeMovie {
     
     public static void main(String[] args) {
         emf = EMF_Creator.createEntityManagerFactory();
-        FacadeMovie fe = getFacadeMovie(emf);
-        fe.getAll().forEach(dto->System.out.println(dto));
+        FacadeMovie fm = getFacadeMovie(emf);
+        fm.getAll().forEach(dto->System.out.println(dto));
     }
 
 }

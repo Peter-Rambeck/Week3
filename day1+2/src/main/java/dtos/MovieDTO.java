@@ -6,7 +6,7 @@
 package dtos;
 
 import entities.Movie;
-import entities.RenameMe;
+import facades.FacadeMovie;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,20 +25,33 @@ public class MovieDTO {
         this.title = title;
         this.actors = actors;
     }
+    
+     public MovieDTO(Movie m) {
+        this.id = m.getId();
+        this.title = m.getTitle();
+        this.year = m.getYear();
+        this.actors = m.getActors();
+    }
+    
+    
 
    
     public static List<MovieDTO> getDtos(List<Movie> ms){
         List<MovieDTO> mdtos = new ArrayList();
         ms.forEach(m->mdtos.add(new MovieDTO(m)));
+        System.out.println(mdtos);
         return mdtos;
     }
 
-    public MovieDTO(Movie m) {
-        this.id = m.getId();
-        this.year = m.getYear(); 
-        this.title = m.getTitle();
-        this.actors = m.getActors();    
+    public long getId() {
+        return id;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+
 
     public int getYear() {
         return year;
