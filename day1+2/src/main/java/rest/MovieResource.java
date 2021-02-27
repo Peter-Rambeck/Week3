@@ -44,11 +44,14 @@ public class MovieResource {
         return GSON.toJson(allMovies) + "{\"igennem\"]";
     }
     
-    @Path("id/{id}")
+   @Path("byid/{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getById(@PathParam("id") long id) {
         MovieDTO movie = FACADE.getById(id);        
         return GSON.toJson(movie);
     }
+    
+
+        
 }

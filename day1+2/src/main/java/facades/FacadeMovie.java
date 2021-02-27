@@ -76,11 +76,25 @@ public class FacadeMovie {
         return MovieDTO.getDtos(ms);
     }
     
+    public MovieDTO getByName(String name){
+        EntityManager em = emf.createEntityManager();
+        Movie m;
+        try {
+            TypedQuery<Movie> query = em.createQuery("SELECT m FROM Movie m WHERE m.title=:title", Movie.class);
+            query.setParameter("title", name);
+            m=query.getSingleResult();
+        } finally {
+            em.close();
+        }
+        return new MovieDTO(m);
+    }
+    
     
     public static void main(String[] args) {
         emf = EMF_Creator.createEntityManagerFactory();
         FacadeMovie fm = getFacadeMovie(emf);
         fm.getAll().forEach(dto->System.out.println(dto));
+        System.out.println(fm.getMovieCount());
     }
 
 }

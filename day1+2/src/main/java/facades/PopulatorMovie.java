@@ -5,7 +5,6 @@
  */
 package facades;
 import dtos.MovieDTO;
-import entities.Movie;
 import javax.persistence.EntityManagerFactory;
 import utils.EMF_Creator;
 
@@ -17,8 +16,9 @@ public class PopulatorMovie {
     public static void populate(){
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
         FacadeMovie fm = FacadeMovie.getFacadeMovie(emf);
-        fm.create(new MovieDTO(new Movie(2020, "Great Show", new String[] {"Arnoldo", "Kagedej"} )));
-        fm.create(new MovieDTO(new Movie(2020, "Great Show", new String[] {"Arnoldo", "Kagedej"} )));
+        fm.create(new MovieDTO(2020, "Great Show", new String[] {"Arnoldo", "Kagedej"} ));
+        fm.create(new MovieDTO(2020, "Sheriffen mangler småpenge", new String[] {"Jørgen", "Ryg"} ));
+        fm.create(new MovieDTO(2020, "Load of bullocks", new String[] {"Gunnar", "Nu"} ));
         
     }
     
